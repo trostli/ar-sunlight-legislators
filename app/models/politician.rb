@@ -5,6 +5,7 @@ class Politician < ActiveRecord::Base
   scope :all_active_senators, -> {all_actives.where(title: "Sen")}
   scope :all_active_representatives, -> {all_actives.where(title: "Rep")}
   scope :all_senators, -> {where(title: "Sen")}
+  scope :all_inactive, -> {where(in_office: '0')}
 
 
   # validates :twitter_id, :uniqueness => true
@@ -83,6 +84,10 @@ class Politician < ActiveRecord::Base
       print 'Female Representatives: '
     end
     puts (self.all_active_representatives.where("gender = ?", gender).count.to_f / self.all_active_representatives.count.to_f * 100).to_s + "%"
+  end
+
+  def self.delete_inactive
+    self.all_inactive.destroy_all
   end
 
 end

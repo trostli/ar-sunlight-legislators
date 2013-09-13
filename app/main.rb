@@ -20,3 +20,7 @@ Politician.rep_count
  # p Politician.all_active_senators
 # p Politician.all_active_senators.count
 # p Politician.all.count
+Politician.delete_inactive
+p Politician.all_inactive.count
+Politician.senate_count
+Politician.rep_count
